@@ -1,0 +1,20 @@
+
+.d-flex .w-100 img {
+    width: 100%;
+}
+
+.card a img {
+    width: 100%;
+}
+
+.container {
+    min-height: 75vh;
+    padding-right: 32px;
+    padding-left: 32px;
+    padding-top: 32px;
+    padding-bottom: 32px;
+}
+
+.imagen {
+    padding-right: 10px ;
+}

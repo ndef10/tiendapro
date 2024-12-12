@@ -1,3 +1,4 @@
+{% load static %}
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -11,6 +12,9 @@
       integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH"
       crossorigin="anonymous"
     />
+    <!-- Style -->
+    <link href="{% static 'style.css' %}" rel="stylesheet" />
+
     <title>Tiendapro</title>
   </head>
   <body>
@@ -78,7 +82,10 @@
         </div>
       </nav>
     </section>
-    <main style="height: 75vh">{% block content %} {% endblock %}</main>
+    <main class="container">
+      {% block content %} 
+      {% endblock %}
+    </main>
 
     <footer class="bg-secondary text-body-secondary">
       <div class="d-flex">

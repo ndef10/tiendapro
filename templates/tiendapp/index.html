@@ -3,17 +3,23 @@
 {% block content %}
 
 <div class="d-flex flex-wrap row-cols-4">
+    {% for prod in products %}
+
     <div class="col p-2">
         <div class="card">
-            <img src="" alt="">
+            <a href="/product/{{ prod.sku }}">
+                <img src="{{ prod.thumbnail.url }}" alt="">
+            </a>
+            
             <div class="card-body">
-                <h2 class="card-title">{{productos.}}</h2>
-                <div class="card-text">Lorem ipsum.........</div>
+                <h2 class="card-title">{{prod.name}}</h2>
+                <div class="card-text">{{prod.description}}</div>
                 <a class="btn btn-primary">Aniadir al carrito</a>
             </div>
         </div>
     
     </div>
+    {% endfor %}
 </div> 
 
 {% endblock %}

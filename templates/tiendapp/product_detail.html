@@ -3,16 +3,36 @@
 {% block content %}
 
 <div class="d-flex">
-  <div class="w-100 bg-danger d-flex flex-column">
-    <img class="w-100" src="" alt="" srcset="">
+  <div class="w-100  d-flex flex-column">
+    <img class="w-100" src="{{ product.image.url }}">
 
   </div>
-  <div class="w-100 bg-primary d-flex flex-column">
-    <h1>Titulo</h1>
-    <p>Descripcion</p>
-    <a href="#"class="btn btn-primary">Aniadir al carrito</a>
+  <div class="w-100 d-flex flex-column">
+    <h1>{{ product.name}}</h1>
+    <p>{{ product.description }}</p>
+    <a href="/add_to_cart/{{ product.sku }}"class="btn btn-primary">Aniadir al carrito</a>
   </div>
-  
+</div>
+
+<div class=" imagen d-flex flex-column mt-4 pt-4">
+  <h4>Ver tambien:</h4>
+  <div class="d-flex flex-wrap row-cols-4">
+    {% for extra in extras %}
+    <div class="col p-2">
+      <div class="card">
+        <a href="/product/{{ extra.sku }}">
+          <img src="{{ extra.thumbnail.url }}">
+        </a>
+        <div>
+          <h6>{{ extra.name }}</h6>
+        </div>
+
+      </div>
+
+    </div>
+     
+    {% endfor %}
+</div>
 </div>
 
 {% endblock %}

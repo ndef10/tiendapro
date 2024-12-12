@@ -1,10 +1,14 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from django.http import HttpResponse
+
+from tiendapp.models import Product, ProductCategory
+# from models import Product
 
 # Create your views here.
 def v_index(request):
+    products_db = Product.objects.all()
     context = {
-        'products': [None, None, None, None, None,]
+        'products': products_db
     }
     return render(request,'tiendapp/index.html', context)
 
@@ -14,9 +18,25 @@ def v_cart(request):
     }
     return render(request, 'tiendapp/cart.html', context)
 
-def v_product_detail(request):
-    #completar
-    context = {}
-    return render(request, 'tiendapp/product_detail.html', context)
-    #el return render, enlazando el html, tiendap/product_detail.html
-    #adicionar a la funcion render, contexto
+def v_product_detail(request, code):
+    product_obj = Product.objects.get(sku = code)
+ 
+    rels = ProductCategory.objects.filter(product = product_obj)
+ 
+    # rels_ids, guarda los ids categoria del producto
+    rels_ids = [rr.category.id for rr in rels]
+    sug = ProductCategory.objects.filter(
+        category__in = rels_ids).exclude(product = product_obj)
+    # sug, posee a las sugerencias, pero necesito los ids de los productos
+    sug_ids = [ss.product.id for ss in sug]
+    extras = Product.objects.filter(id__in = sug_ids)
+ 
+    context = {
+        "product": product_obj,
+        "extras": extras
+    }
+    return render(request, "tiendapp/product_detail.html", context) 
+    
+def v_add_too_cart(request, code ):
+    
+    return redirect('/cart')
