@@ -1,0 +1,59 @@
+
+hacer script para crear nuevo usuario con estos datos:
+
+username: "juanito.alcachofa@gmail.com"
+
+first_name = "Juanito"
+
+last_name = "Alcachofa"
+
+password = "123456"
+
+shipping_address = "Av. Colonial 2323"
+
+billing_address = "Av. Los lirios 43434"
+
+telefono = "12121212"
+ 
+python manage.py  tienda_juanito
+ 
+
+==================================================
+
+(venv_tienda) [Marce@fedora tiendapro]$ python manage.py shell
+Python 3.10.11 (main, Apr  5 2023, 00:00:00) [GCC 12.2.1 20221121 (Red Hat 12.2.1-4)] on linux
+>>> from tiendapp.models import Category, Product, ProductCategory, Customer, Orede, OrderDetail
+Traceback (most recent call last):
+  File "<console>", line 1, in <module>
+ImportError: cannot import name 'Orede' from 'tiendapp.models' (/home/Marce/000-PROYECTOS/CURSO-PYTHON/DJANGO/tiendapro/tiendapp/models.py)
+>>> from tiendapp.models import Category, Product, ProductCategory, Customer, Order, OrderDetail
+>>> p = Order.objects.filter(status = 'PENDIENTE')
+<QuerySet [<Order: agusta@gmail.com Estado Orden: PENDIENTE>]> (esta es una lista empoderada para trabajar con django, se usa como lista o arreglo o como un queryset)
+>>> 
+
+>>> p.count()
+1
+>>> p.len()
+Traceback (most recent call last):
+  File "<console>", line 1, in <module>
+AttributeError: 'QuerySet' object has no attribute 'len'
+>>> len(p)
+1
+>>> p.count()
+1
+>>> ord = p[0]
+>>> ord
+<Order: agusta@gmail.com Estado Orden: PENDIENTE>
+>>> type(ord)
+<class 'tiendapp.models.Order'>
+>>> 
+
+SE LE LLAMA TIPO A LA CLASS Y SE CONSULTA CON type() y le damos la variable
+
+>>> ord.status
+'PENDIENTE'
+>>> type(ord.status)
+<class 'str'>
+
+AL PROFUNDIZAR IGUAL LLEGO A UN STRING
+
