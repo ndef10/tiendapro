@@ -83,3 +83,17 @@ def v_remove_from_cart(request, code ):
 
     return redirect('/cart')
 
+def v_checkout(request):
+    customer_obj = Customer.objects.get(user = request.user)
+
+    order_current = customer_obj.get_current_order()
+
+    details = OrderDetail.objects.filter(order = order_current)
+
+    context = {
+        'items': details,
+        'total_order': 1213123,
+        'customer': customer_obj
+    }
+    
+    return render(request,'tiendapp/checkout.html', context)
